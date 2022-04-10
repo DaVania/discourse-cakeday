@@ -3,6 +3,8 @@ import {
   cakedayBirthday,
   cakedayBirthdayTitle,
   cakedayTitle,
+  userAge,
+  userAgeTitle,
 } from "discourse/plugins/discourse-cakeday/discourse/lib/cakeday";
 
 export default {
@@ -17,5 +19,9 @@ export default {
       "cakedayBirthdayTitle",
       cakedayBirthdayTitle(args.user, this.currentUser)
     );
+    const isStaff = this.currentUser && this.currentUser.staff;
+    const isAdmin = this.currentUser && this.currentUser.admin;
+    if (isAdmin || isStaff)
+      component.set("userAgeTitle", userAgeTitle(args.user, this.currentUser));
   },
 };

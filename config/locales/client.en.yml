@@ -5,16 +5,20 @@ en:
         user_title: "Today is your birthday!"
         title: "Today is my birthday!"
         label: "Date of Birth"
+        yyyy: "YYYY"
       anniversary:
         user_title: "Today is the anniversary of the day you joined our community!"
         title: "Today is the anniversary of the day I joined this community!"
     cakeday:
       none: " "
+      dd: "DD"
+      mm: "MM"
       title: Cakeday
       today: "Today"
       tomorrow: "Tomorrow"
       upcoming: "Upcoming"
       all: "All"
+      age: "%{age} years"
     birthdays:
       title: "Birthdays"
       month:

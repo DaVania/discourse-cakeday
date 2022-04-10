@@ -30,6 +30,16 @@ export function cakedayBirthday(dateOfBirth) {
   return isSameDay(dateOfBirth);
 }
 
+export function userAge(dateOfBirth) {
+  return dateOfBirth
+      ? (moment(dateOfBirth, "YYYY-MM-DD").year() != 1904 ? moment().diff(dateOfBirth, 'years') : null)
+      : null;
+}
+
+export function userAgeTitle(user, currentUser) {
+  return (user.date_of_birth && moment(user.date_of_birth, "YYYY-MM-DD").year() != 1904) ? I18n.t("cakeday.age", {age: userAge(user.date_of_birth)}) : null;
+}
+
 export function cakedayTitle(user, currentUser) {
   if (isSameUser(user, currentUser)) {
     return "user.anniversary.user_title";
