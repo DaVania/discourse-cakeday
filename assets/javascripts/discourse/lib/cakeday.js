@@ -1,4 +1,5 @@
 import { isEmpty } from "@ember/utils";
+import I18n from "I18n";
 
 export function isSameDay(date, opts) {
   let formatString = "YYYY";
@@ -32,12 +33,21 @@ export function cakedayBirthday(dateOfBirth) {
 
 export function userAge(dateOfBirth) {
   return dateOfBirth
+<<<<<<< HEAD
+      ? (moment(dateOfBirth, "YYYY-MM-DD").year() !== 1904 ? moment().diff(dateOfBirth, 'years') : null)
+      : null;
+}
+
+export function userAgeTitle(user) {
+  return (user.date_of_birth && moment(user.date_of_birth, "YYYY-MM-DD").year() !== 1904) ? I18n.t("cakeday.age", {age: userAge(user.date_of_birth)}) : null;
+=======
       ? (moment(dateOfBirth, "YYYY-MM-DD").year() != 1904 ? moment().diff(dateOfBirth, 'years') : null)
       : null;
 }
 
 export function userAgeTitle(user, currentUser) {
   return (user.date_of_birth && moment(user.date_of_birth, "YYYY-MM-DD").year() != 1904) ? I18n.t("cakeday.age", {age: userAge(user.date_of_birth)}) : null;
+>>>>>>> eb4b8a7a696c127871a8a345c83f12d1121ab1f0
 }
 
 export function cakedayTitle(user, currentUser) {
