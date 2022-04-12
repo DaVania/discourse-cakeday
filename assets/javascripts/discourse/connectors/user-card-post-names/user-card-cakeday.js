@@ -3,10 +3,6 @@ import {
   cakedayBirthday,
   cakedayBirthdayTitle,
   cakedayTitle,
-<<<<<<< HEAD
-=======
-  userAge,
->>>>>>> eb4b8a7a696c127871a8a345c83f12d1121ab1f0
   userAgeTitle,
 } from "discourse/plugins/discourse-cakeday/discourse/lib/cakeday";
 
@@ -24,13 +20,8 @@ export default {
     );
     const isStaff = this.currentUser && this.currentUser.staff;
     const isAdmin = this.currentUser && this.currentUser.admin;
-<<<<<<< HEAD
     if (isAdmin || isStaff) {
       component.set("userAgeTitle", userAgeTitle(args.user, this.currentUser));
-	}
-=======
-    if (isAdmin || isStaff)
-      component.set("userAgeTitle", userAgeTitle(args.user, this.currentUser));
->>>>>>> eb4b8a7a696c127871a8a345c83f12d1121ab1f0
+    }
   },
 };

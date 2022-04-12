@@ -9,11 +9,7 @@ export default {
 
     const dateOfBirth = args.model.get("date_of_birth");
     const userBirthdayYear = dateOfBirth
-<<<<<<< HEAD
       ? (moment(dateOfBirth, "YYYY-MM-DD").year() !== year ? moment(dateOfBirth, "YYYY-MM-DD").year() : null)
-=======
-      ? (moment(dateOfBirth, "YYYY-MM-DD").year() != year ? moment(dateOfBirth, "YYYY-MM-DD").year() : null)
->>>>>>> eb4b8a7a696c127871a8a345c83f12d1121ab1f0
       : null;
     const userBirthdayMonth = dateOfBirth
       ? moment(dateOfBirth, "YYYY-MM-DD").month() + 1
