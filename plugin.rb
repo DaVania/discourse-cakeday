@@ -61,6 +61,12 @@ after_initialize do
   end
 
   add_to_serializer(:user_card, :date_of_birth, false) do
+<<<<<<< HEAD
+    if object.date_of_birth != nil && (scope.is_staff? || scope.is_admin?)
+      object.date_of_birth
+    else
+      Date.new(1904, object.date_of_birth.month, object.date_of_birth.day)
+=======
     object.date_of_birth
 	if object.date_of_birth != nil
       if (scope.is_staff? || scope.is_admin?)
@@ -70,6 +76,7 @@ after_initialize do
       end
     else
       nil
+>>>>>>> eb4b8a7a696c127871a8a345c83f12d1121ab1f0
     end
   end
 
