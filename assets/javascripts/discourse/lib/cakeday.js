@@ -36,7 +36,11 @@ export function userAge(dateOfBirth) {
 }
 
 export function userAgeTitle(user) {
-  return (user.date_of_birth && moment(user.date_of_birth, "YYYY-MM-DD").year() !== 1904) ? I18n.t("cakeday.age", {age: userAge(user.date_of_birth)}) : null;
+  return (user.date_of_birth && moment(user.date_of_birth, "YYYY-MM-DD").year() !== 1904) ? userAge(user.date_of_birth) + ' ' + I18n.default.t("relative_time_picker.years", {count: userAge(user.date_of_birth)}) : null;
+}
+
+export function userBirthdateTitle(user) {
+  return (user.date_of_birth && moment(user.date_of_birth, "YYYY-MM-DD").year() !== 1904) ? moment(user.date_of_birth).format(I18n.t("dates.long_with_year_no_time")) : null;
 }
 
 export function cakedayTitle(user, currentUser) {
