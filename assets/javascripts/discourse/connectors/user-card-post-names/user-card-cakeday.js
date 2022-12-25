@@ -21,7 +21,11 @@ export default {
     );
     const isStaff = this.currentUser && this.currentUser.staff;
     const isAdmin = this.currentUser && this.currentUser.admin;
-    if (isAdmin || isStaff) {
+    const isMe = this.currentUser && this.currentUser.id === args.user.id;
+    
+    const isAllowedByGroup = true;
+    
+    if (isMe || isStaff || isAllowedByGroup) {
       component.set("userAgeTitle", userAgeTitle(args.user));
       component.set("userBirthdateTitle", userBirthdateTitle(args.user));
     }

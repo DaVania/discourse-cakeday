@@ -43,6 +43,10 @@ export function userBirthdateTitle(user) {
   return (user.date_of_birth && moment(user.date_of_birth, "YYYY-MM-DD").year() !== 1904) ? moment(user.date_of_birth).format(I18n.t("dates.long_with_year_no_time")) : null;
 }
 
+export function userBirthdateText(user, show_year = true) {
+  return user.date_of_birth ? ((moment(user.date_of_birth, "YYYY-MM-DD").year() !== 1904 && show_year) ? moment(user.date_of_birth).format(I18n.t("dates.long_with_year_no_time")) : moment(user.date_of_birth).format(I18n.t("dates.long_no_year_no_time"))) : null;
+}
+
 export function cakedayTitle(user, currentUser) {
   if (isSameUser(user, currentUser)) {
     return "user.anniversary.user_title";

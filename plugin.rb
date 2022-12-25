@@ -60,12 +60,76 @@ after_initialize do
     }
   end
 
+  validate User, :discourse_cakeday_validation do
+    errors.add(:base, I18n.t('cakeday.cakeday_birthday_required')) if date_of_birth == nil && SiteSetting.cakeday_birthday_required && !staff?
+  end
+
+
+  User.register_custom_field_type('groups_fullbirthday_visible', [:integer])
+  DiscoursePluginRegistry.serialized_current_user_fields << "groups_fullbirthday_visible"
+  
+  add_to_class(:user, :groups_fullbirthday_visible) do
+    self.custom_fields['groups_fullbirthday_visible'] || []
+  end
+
+  add_to_serializer(:user, :groups_fullbirthday_visible) do
+    object.custom_fields && object.custom_fields['groups_fullbirthday_visible'].to_a
+  end
+
+  register_editable_user_custom_field [:groups_fullbirthday_visible]
+  register_editable_user_custom_field groups_fullbirthday_visible: []
+
+  %w[
+    show_birthday_to_be_celebrated
+  ].each do |field|
+    User.register_custom_field_type(field, :boolean)
+    DiscoursePluginRegistry.serialized_current_user_fields << field
+    # default options to true if not set by user
+    add_to_class(:user, field.to_sym) do
+      if custom_fields[field] != nil
+        custom_fields[field]
+      else
+        true
+      end
+    end
+    add_to_serializer(:user, field.to_sym)  {object.send(field)}
+    register_editable_user_custom_field field.to_sym
+  end
+
+  %w[
+    limit_age_visibility_to_groups
+  ].each do |field|
+    User.register_custom_field_type(field, :boolean)
+    DiscoursePluginRegistry.serialized_current_user_fields << field
+    # default options to false if not set by user
+    add_to_class(:user, field.to_sym) do
+      if custom_fields[field] != nil
+        custom_fields[field]
+      else
+        false
+      end
+    end
+    add_to_serializer(:user, field.to_sym)  {object.send(field)}
+    register_editable_user_custom_field field.to_sym
+  end
+
   add_to_serializer(:user_card, :date_of_birth, false) do
     if object.date_of_birth != nil
-      if (scope.is_staff? || scope.is_admin?)
+      allowed_groups = []
+      #allowed_groups.concat(object.custom_fields['groups_fullbirthday_visible'])
+      allowed_groups.concat(object.custom_fields && object.custom_fields['groups_fullbirthday_visible'].to_a)
+      allowedByGroup = allowed_groups.present? && scope.user.groups.where(id: allowed_groups).exists?
+
+      if (scope.is_me?(object) || scope.is_staff? || allowedByGroup)
         object.date_of_birth
+      #if (allowedByGroup)
+      #  Date.new(1911, object.date_of_birth.month, object.date_of_birth.day)
       else
-        Date.new(1904, object.date_of_birth.month, object.date_of_birth.day)
+        if (object.show_birthday_to_be_celebrated)
+          Date.new(1904, object.date_of_birth.month, object.date_of_birth.day)
+        else
+          nil
+        end
       end
     else
       nil

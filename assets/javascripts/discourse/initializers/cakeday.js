@@ -51,7 +51,10 @@ function initializeCakeday(api) {
 
       user.set("date_of_birth", date);
     },
-
+    @observes("model.isSaving")
+    _logIsSaving() {
+      console.log('model.isSaving has been observed');
+    },
     @discourseComputed("model.date_of_birth")
     userBirthdayYear(dateOfBirth) {
       return moment(dateOfBirth, "YYYY-MM-DD").year() + 1;

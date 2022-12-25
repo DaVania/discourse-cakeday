@@ -1,7 +1,7 @@
 {
   "name": "discourse",
-  "version": "1.0.0",
-  "repository": "git@github.com:discourse/discourse-cakeday.git",
+  "version": "1.0.1",
+  "repository": "git@github.com:DaVania/discourse-cakeday.git",
   "author": "Discourse",
   "license": "MIT",
   "devDependencies": {
