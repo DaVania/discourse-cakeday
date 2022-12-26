@@ -18,4 +18,4 @@ da:
     cakeday_min_age_controlvisibility: "Mininum alder for at styre synlighed"
     cakeday_show_age_to_groups: "Udover medarbejdere, vis alder for alle brugere, til følgende grupper"
   cakeday:
-    cakeday_birthday_required: "Please enter your birthdate"
+    cakeday_birthday_required: "Indtast venligst din fødselsdato"

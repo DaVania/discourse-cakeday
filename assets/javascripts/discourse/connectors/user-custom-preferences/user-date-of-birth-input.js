@@ -42,10 +42,9 @@ export default {
     args.model.set("hasAge", hasAge);
 
     args.model.set("saved", saved);
-
-    const allowUserChangeBirthdate = isAdmin || isModerator || isStaff;
-
     args.model.set("isStaff", isStaff);
+
+    const allowUserChangeBirthdate = isAdmin || isModerator || isStaff || args.model.siteSettings.cakeday_birthday_allowchange;
 
     let canChangeBirthdate = allowUserChangeBirthdate || args.model.custom_fields.admin_unlock_birthday || args.model.siteSettings.cakeday_birthday_allowchange || (userBirthdayDay === null || userBirthdayMonth === null || (userBirthdayYear === null && showYear));
     

@@ -81,14 +81,14 @@
     {{else}}
       {{i18n "user.date_of_birth.nochange" birthdate=userBirthdateText}}
     {{/if}}
-    {{#if allowUserChangeBirthdate}}
+    {{#unless allowUserChangeBirthdate}}
       <label class="instructions">
         <div class="warning" style="background-color: var(--danger-low-mid); color: rgba(var(--always-black-rgb), 1);">{{d-icon "exclamation-triangle"}} {{i18n "user.date_of_birth.nochange_warn"}}</div>
         {{#if model.isStaff}}
           <div class="warning" style="background-color: var(--wiki);">{{d-icon "shield-alt"}} {{i18n "user.date_of_birth.admin_to_allow_birthdate_changes"}}</div>
         {{/if}}
       </label>
-    {{/if}}
+    {{/unless}}
     {{#if model.canControlVisibility}}
       <div style="margin-top: 10px;"><a name="show_birthday_to_be_celebrated"></a>
       {{preference-checkbox labelKey="user.date_of_birth.show_birthday_to_be_celebrated" checked=model.custom_fields.show_birthday_to_be_celebrated}}
