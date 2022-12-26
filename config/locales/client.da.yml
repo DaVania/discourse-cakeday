@@ -18,7 +18,8 @@ da:
         show_age_to_theese_groups: "Vis alder på brugerkort for disse grupper"
         show_birthday_to_be_celebrated: "Vis min fødselsdato på brugerkort og Kagedags oversigt"
         always_visible_to_admins: "Fødselsdatoen er altid synlig for admins"
-        limit_age_visibility_to_groups: "Alder er altid synlig for admins"
+        limit_age_visibility_to_groups: "Begræns synlighed af alder til disse grupper"
+        limit_age_visibility_to_groups2: "Alder er altid synlig for admins"
         required: "(Fødselsdato er påkrævet)"
       anniversary:
         user_title: "I dag er årsdagen hvor du blev en del af vores fælleskab!"

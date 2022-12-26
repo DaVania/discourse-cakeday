@@ -13,7 +13,8 @@ en:
         show_birthday_to_be_celebrated: "Show my birthday on user cards and Cakeday overview"
         unlock_to_allow_changes: "Unlock to allow changes to birthdate"
         always_visible_to_admins: "Birthdate is always visible to admins"
-        limit_age_visibility_to_groups: "Age is always visible to admins"
+        limit_age_visibility_to_groups: "Limit age visibility to theese groups only"
+        limit_age_visibility_to_groups2: "Age is always visible to admins"
         required: "(Birthdate is required)"
       anniversary:
         user_title: "Today is the anniversary of the day you joined our community!"
