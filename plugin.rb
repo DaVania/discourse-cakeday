@@ -2,18 +2,19 @@
 
 # name: discourse-cakeday
 # about: Show a birthday cake beside the user's name on their birthday and/or on the date they joined Discourse.
-# version: 0.3
+# version: 0.4
 # authors: Alan Tan
 # url: https://github.com/discourse/discourse-cakeday
 # transpile_js: true
 
+enabled_site_setting :cakeday_enabled
+
 register_asset "stylesheets/cakeday.scss"
 register_asset "stylesheets/emoji-images.scss"
+register_asset "stylesheets/user-date-of-birth-input.scss"
 register_asset "stylesheets/mobile/user-date-of-birth-input.scss"
 
 register_svg_icon "birthday-cake" if respond_to?(:register_svg_icon)
-
-enabled_site_setting :cakeday_enabled
 
 after_initialize do
   module ::DiscourseCakeday
@@ -55,11 +56,44 @@ after_initialize do
       serializer,
       :birthdate,
       include_condition: -> { SiteSetting.cakeday_birthday_enabled && scope.user.present? },
-    ) { object.date_of_birth }
+    ) {
+        if SiteSetting.cakeday_birthday_enabled && object.date_of_birth.present?
+          allowed_groups = []
+
+          if object.custom_fields['groups_fullbirthday_visible']
+            allowed_groups.concat(SiteSetting.cakeday_show_age_to_groups && object.custom_fields['groups_fullbirthday_visible'].to_s.split('|'))
+          end
+
+          allowedByGroup = allowed_groups.present? && scope.user.groups.where(id: allowed_groups).exists?
+
+          if object.date_of_birth.to_s == "1903-04-05"
+            nil
+          elsif (scope.is_me?(object) || scope.is_staff? || allowedByGroup)
+            object.date_of_birth
+          else
+            if (object.show_birthday_to_be_celebrated)
+              Date.new(1904, object.date_of_birth.month, object.date_of_birth.day)
+            else
+              nil
+            end
+          end
+        else
+          nil
+        end
+      }
+
+    add_to_serializer(serializer, :include_cakedate?) do
+      SiteSetting.cakeday_enabled && scope.user.present?
+    end
+
+    add_to_serializer(serializer, :include_birthdate?) do
+      SiteSetting.cakeday_birthday_enabled && scope.user.present?
+    end
   end
 
   # overwrite the post serializer to show the cakes next to the
   # username in the posts stream
+
   add_to_serializer(
     :post,
     :user_cakedate,
@@ -72,9 +106,76 @@ after_initialize do
   add_to_serializer(
     :post,
     :user_birthdate,
-    include_condition: -> do
-      SiteSetting.cakeday_birthday_enabled && scope.user.present? &&
-        object.user&.date_of_birth.present?
-    end,
-  ) { object.user.date_of_birth }
+    include_condition: -> { SiteSetting.cakeday_birthday_enabled && object.user.date_of_birth.present? }
+  ) do
+      if SiteSetting.cakeday_birthday_enabled && object.user.date_of_birth.present?
+        allowed_groups = []
+
+        if object.custom_fields['groups_fullbirthday_visible']
+          allowed_groups.concat(SiteSetting.cakeday_show_age_to_groups && object.custom_fields['groups_fullbirthday_visible'].to_s.split('|'))
+        end
+
+        allowedByGroup = allowed_groups.present? && scope.user.groups.where(id: allowed_groups).exists?
+
+        if object.user.date_of_birth.to_s == "1903-04-05"
+          nil
+        elsif (scope.is_me?(object) || scope.is_staff? || allowedByGroup)
+          object.user.date_of_birth
+        else
+          if (object.show_birthday_to_be_celebrated)
+            Date.new(1904, object.user.date_of_birth.month, object.user.date_of_birth.day)
+          else
+            nil
+          end
+        end
+      else
+        nil
+      end
+  end
+
+  add_to_serializer(:post, :include_user_cakedate?) do
+    SiteSetting.cakeday_enabled && scope.user.present? && object.user&.created_at.present?
+  end
+
+  add_to_serializer(:post, :include_user_birthdate?) do
+    SiteSetting.cakeday_birthday_enabled && scope.user.present? &&
+      object.user&.date_of_birth.present?
+  end
+
+  validate(:user, :cakeday_user_validator) do |force = nil|
+    if SiteSetting.cakeday_birthday_required && (date_of_birth.blank? || (SiteSetting.cakeday_birthday_show_year && date_of_birth.year == 1904))
+      errors.add(:date_of_birth, :blank, message: I18n.t('errors.messages.blank'))
+    end
+
+    if date_of_birth.present? && date_of_birth.to_s == "1903-04-05"
+      date_of_birth = nil
+    end
+  end
+
+  %w[
+    show_birthday_to_be_celebrated
+    limit_age_visibility_to_groups
+  ].each do |field|
+    User.register_custom_field_type(field, :boolean)
+    DiscoursePluginRegistry.serialized_current_user_fields << field
+    register_editable_user_custom_field field.to_sym
+
+    %i[user post].each do |serializer|
+
+      add_to_class(serializer, field.to_sym) do
+        if custom_fields[field] != nil
+          custom_fields[field]
+        else
+          true
+        end
+      end
+      add_to_serializer(serializer, field.to_sym)  {object.send(field)}
+
+    end
+  end
+
+  add_to_serializer(:admin_user, :birthdate?) do
+    object&.date_of_birth
+  end
+
 end

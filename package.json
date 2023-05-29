@@ -1,6 +1,6 @@
 {
   "name": "discourse-cakeday",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "repository": "https://github.com/discourse/discourse-cakeday",
   "author": "Discourse",
   "license": "MIT",

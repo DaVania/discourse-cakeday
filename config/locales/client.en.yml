@@ -1,15 +1,33 @@
 en:
   js:
+    admin:
+      user:
+        allow_change_by_user: "Allow change by user from admin dashboard"
+        unlock_birthdate: "Unlock birthdate, to allow change by the user"
+        date_unlocked: "Date has been unlocked for change by user"
+        date_format: "YYYY-MM-DD or DD-MM-YYYY"
+        date_format_label: "Date format"
     user:
       date_of_birth:
         user_title: "Today is your birthday!"
         title: "Today is my birthday!"
         label: "Date of Birth"
+        nochange: "%{birthdate} (to change contact staff)"
+        nochange_warn: "Changes to your birthdate, will be locked after leaving this page."
+        show_age_to_theese_groups: "Show age on user card, to theese groups"
+        show_birthday_to_be_celebrated: "Show my birthday on user cards and Cakeday overview"
+        always_visible_to_staff: "Birthdate is always visible to staff"
+        limit_age_visibility_to_groups: "Limit age visibility to theese groups only"
+        limit_age_visibility_to_groups2: "Age is always visible to staff"
+        required: "(Birthdate is required)"
       anniversary:
         user_title: "Today is the anniversary of the day you joined our community!"
         title: "Today is the anniversary of the day I joined this community!"
     cakeday:
       none: " "
+      dd: "DD"
+      mm: "MM"
+      yyyy: "YYYY"
       title: Cakeday
       today: "Today"
       tomorrow: "Tomorrow"
