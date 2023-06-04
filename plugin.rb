@@ -142,16 +142,6 @@ after_initialize do
       object.user&.date_of_birth.present?
   end
 
-  validate(:user, :cakeday_user_validator) do |force = nil|
-    if SiteSetting.cakeday_birthday_required && (date_of_birth.blank? || (SiteSetting.cakeday_birthday_show_year && date_of_birth.year == 1904))
-      errors.add(:date_of_birth, :blank, message: I18n.t('errors.messages.blank'))
-    end
-
-    if date_of_birth.present? && date_of_birth.to_s == "1903-04-05"
-      date_of_birth = nil
-    end
-  end
-
   %w[
     show_birthday_to_be_celebrated
     limit_age_visibility_to_groups

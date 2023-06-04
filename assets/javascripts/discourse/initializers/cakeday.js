@@ -5,6 +5,8 @@ import {
   cakeday,
 } from "discourse/plugins/discourse-cakeday/discourse/lib/cakeday";
 import { registerUnbound } from "discourse-common/lib/helpers";
+import { getOwner } from "discourse-common/lib/get-owner";
+import { htmlSafe } from "@ember/template";
 
 function initializeCakeday(api) {
   const currentUser = api.getCurrentUser();
@@ -16,6 +18,23 @@ function initializeCakeday(api) {
   store.addPluralization("anniversary", "anniversaries");
 
   const siteSettings = api.container.lookup("site-settings:main");
+
+  api.modifyClass("controller:preferences/profile", {
+    actions: {
+      save() {
+        if (siteSettings.cakeday_birthday_required && !this.model.hasBirthdate)
+        {
+          const dialog = getOwner(this).lookup("service:dialog");
+          dialog.alert({ message: htmlSafe(I18n.t("user.date_of_birth.is_required_error")) });
+        }
+        else
+        {
+          this._super(...arguments);
+        }
+      },
+    },
+  });
+
   const emojiEnabled = siteSettings.enable_emoji;
   const cakedayEnabled = siteSettings.cakeday_enabled;
   const birthdayEnabled = siteSettings.cakeday_birthday_enabled;
