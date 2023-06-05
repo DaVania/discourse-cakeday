@@ -26,6 +26,7 @@ da:
         limit_age_visibility_to_groups: "Begræns alders synlighed til disse grupper"
         limit_age_visibility_to_groups2: "Alder er altid synligt for personale"
         required: "(Fødselsdato er påkrævet)"
+        is_required_error: "Fødsesdato er påkrævet, indtast venligst din fødselsdato."
       anniversary:
         user_title: "I dag er årsdagen hvor du blev en del af vores fælleskab!"
         title: "I dag er årsdagen for at jeg blev en del af dette fælleskab!"

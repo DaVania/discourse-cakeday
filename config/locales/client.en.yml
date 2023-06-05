@@ -20,6 +20,7 @@ en:
         limit_age_visibility_to_groups: "Limit age visibility to theese groups only"
         limit_age_visibility_to_groups2: "Age is always visible to staff"
         required: "(Birthdate is required)"
+        is_required_error: "Birthdate is required, please input your birthdate."
       anniversary:
         user_title: "Today is the anniversary of the day you joined our community!"
         title: "Today is the anniversary of the day I joined this community!"
