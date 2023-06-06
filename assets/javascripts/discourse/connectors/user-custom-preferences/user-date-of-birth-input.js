@@ -86,7 +86,7 @@ export default {
       // The property that is being serialized when sending the update
       // request to the server is called `date_of_birth`
       model.set("date_of_birth", date);
-      component.set("hasAge", component.year !== null);
+      component.set("hasAge", component.year !== null && component.year > 1904);
       component.set("hasBirthdate", hasBirthdate);
       component.set("canControlVisibility", ageControlVisibility && userAge(date) >= ageControlVisibility || isStaff);;
     };
