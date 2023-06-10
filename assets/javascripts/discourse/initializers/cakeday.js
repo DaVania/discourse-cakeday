@@ -22,7 +22,7 @@ function initializeCakeday(api) {
   api.modifyClass("controller:preferences/profile", {
     actions: {
       save() {
-        if (siteSettings.cakeday_birthday_required && !this.model.hasBirthdate)
+        if (siteSettings.cakeday_birthday_required && (this.model.date_of_birth === undefined || this.model.date_of_birth === ''))
         {
           const dialog = getOwner(this).lookup("service:dialog");
           dialog.alert({ message: htmlSafe(I18n.t("user.date_of_birth.is_required_error")) });
@@ -30,6 +30,7 @@ function initializeCakeday(api) {
         else
         {
           this._super(...arguments);
+          this.model.hasBirthdateSaved = true;
         }
       },
     },
