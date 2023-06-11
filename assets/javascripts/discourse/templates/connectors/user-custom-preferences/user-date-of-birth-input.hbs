@@ -10,7 +10,7 @@
           @valueProperty={{null}}
           @nameProperty={{null}}
           @none="cakeday.dd"
-          @options={{hash clearable=true autoInsertNoneItem=false none=cakeday.dd}}
+          @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.dd"}}
           @onChange={{action (mut day)}}
         />
         {{#if siteSettings.cakeday_birthday_show_year}}
@@ -22,7 +22,7 @@
           @valueAttribute="value"
           @valueProperty="value"
           @none="cakeday.mm"
-          @options={{hash clearable=true autoInsertNoneItem=false none=cakeday.mm}}
+          @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.mm"}}
           @onChange={{action (mut month)}}
         />
       {{else}}
@@ -32,7 +32,7 @@
           @valueAttribute="value"
           @valueProperty="value"
           @none="cakeday.mm"
-          @options={{hash clearable=true autoInsertNoneItem=false none=cakeday.mm}}
+          @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.mm"}}
           @onChange={{action (mut month)}}
         />
         {{#if siteSettings.cakeday_birthday_show_year}}
@@ -44,7 +44,7 @@
           @valueProperty={{null}}
           @nameProperty={{null}}
           @none="cakeday.dd"
-          @options={{hash clearable=true autoInsertNoneItem=false none=cakeday.dd}}
+          @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.dd"}}
           @onChange={{action (mut day)}}
         />
       {{/if}}
