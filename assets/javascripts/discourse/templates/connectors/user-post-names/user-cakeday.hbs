@@ -1,11 +1,13 @@
 {{#if siteSettings.cakeday_birthday_enabled}}
-  {{#if isUserBirthday}}
-    {{emoji-images list=siteSettings.cakeday_birthday_emoji title="birthdays.title"}}
+  {{#if isBirthday}}
+    <EmojiImages
+      @list={{siteSettings.cakeday_birthday_emoji}}
+      @title={{birthdayTitle}}
+    />
   {{/if}}
 {{/if}}
-
 {{#if siteSettings.cakeday_enabled}}
   {{#if isCakeday}}
-    {{emoji-images list=siteSettings.cakeday_emoji title="anniversaries.title"}}
+    <EmojiImages @list={{siteSettings.cakeday_emoji}} @title={{cakedayTitle}} />
   {{/if}}
 {{/if}}

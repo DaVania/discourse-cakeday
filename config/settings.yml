@@ -5,6 +5,9 @@ plugins:
   cakeday_emoji:
     default: 'cake'
     client: true
+  cakeday_birthday_celebrate:
+    default: true
+    client: true
   cakeday_birthday_enabled:
     default: true
     client: true
@@ -17,3 +20,19 @@ plugins:
   cakeday_birthday_formatdmy:
     default: false
     client: true
+  cakeday_birthday_required:
+    default: false
+    client: true
+  cakeday_birthday_allowchange:
+    default: true
+    client: true
+  cakeday_birthday_allowshowage:
+    default: true
+    client: true
+  cakeday_min_age_controlvisibility:
+    default: 18
+    client: true
+  cakeday_show_age_to_groups:
+    default: ""
+    client: true
+    type: group_list

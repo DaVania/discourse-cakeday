@@ -6,12 +6,27 @@
 
 da:
   js:
+    admin:
+      user:
+        allow_change_by_user: "Tillad brugerændring fra admin dashboard"
+        unlock_birthdate: "Oplås fødselsdato, for at tillade ændring af bruger"
+        date_unlocked: "Dato er nu låst op for brugerændring"
+        date_format: "YYYY-MM-DD eller DD-MM-YYYY"
+        date_format_label: "Dato format"
     user:
       date_of_birth:
         user_title: "I dag er det din fødselsdag!"
         title: "I dag er det min fødselsdag!"
         label: "Fødselsdato"
-        show_age: "Vis alder til brugere"
+        nochange: "%{birthdate} (kontakt personale for at ændre)"
+        nochange_warn: "Ændringer til din fødselsdato, vil blive låst når du forlader denne side."
+        show_age_to_theese_groups: "Vis alder på brugerkort til disse grupper"
+        show_birthday_to_be_celebrated: "Vis min fødselsdag på brugerkort og Kagedags oversigt"
+        always_visible_to_staff: "Fødselsdato er altid synlig for personale"
+        limit_age_visibility_to_groups: "Begræns alders synlighed til disse grupper"
+        limit_age_visibility_to_groups2: "Alder er altid synligt for personale"
+        required: "(Fødselsdato er påkrævet)"
+        is_required_error: "Fødsesdato er påkrævet, indtast venligst din fødselsdato."
       anniversary:
         user_title: "I dag er årsdagen hvor du blev en del af vores fælleskab!"
         title: "I dag er årsdagen for at jeg blev en del af dette fælleskab!"

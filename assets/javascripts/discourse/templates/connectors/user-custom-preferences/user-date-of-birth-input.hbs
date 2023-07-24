@@ -2,76 +2,113 @@
   <div class="control-group">
     <label class="control-label">{{i18n "user.date_of_birth.label"}}</label>
     <div class="controls">
+    {{#if canChangeBirthdate}}
       {{#if siteSettings.cakeday_birthday_formatdmy}}
-        {{combo-box
-          content=days
-          value=userBirthdayDay
-          valueProperty=null
-          nameProperty=null
-          none="cakeday.dd"
-          options=(hash
-            clearable=true
-            autoInsertNoneItem=false
-          )
-          onChange=(action (mut userBirthdayDay))
-        }}
+        <ComboBox
+          @content={{days}}
+          @value={{day}}
+          @valueProperty={{null}}
+          @nameProperty={{null}}
+          @none="cakeday.dd"
+          @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.dd"}}
+          @onChange={{action (mut day)}}
+        />
         {{#if siteSettings.cakeday_birthday_show_year}}
           -
         {{/if}}
-        {{combo-box
-          content=months
-          value=userBirthdayMonth
-          valueAttribute="value"
-          valueProperty="value"
-          none="cakeday.mm"
-          options=(hash
-            clearable=true
-            autoInsertNoneItem=false
-          )
-          onChange=(action (mut userBirthdayMonth))
-        }}
+        <ComboBox
+          @content={{months}}
+          @value={{month}}
+          @valueAttribute="value"
+          @valueProperty="value"
+          @none="cakeday.mm"
+          @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.mm"}}
+          @onChange={{action (mut month)}}
+        />
       {{else}}
-        {{combo-box
-          content=months
-          value=userBirthdayMonth
-          valueAttribute="value"
-          valueProperty="value"
-          none="cakeday.mm"
-          options=(hash
-            clearable=true
-            autoInsertNoneItem=false
-          )
-          onChange=(action (mut userBirthdayMonth))
-        }}
+        <ComboBox
+          @content={{months}}
+          @value={{month}}
+          @valueAttribute="value"
+          @valueProperty="value"
+          @none="cakeday.mm"
+          @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.mm"}}
+          @onChange={{action (mut month)}}
+        />
         {{#if siteSettings.cakeday_birthday_show_year}}
           -
         {{/if}}
-        {{combo-box
-          content=days
-          value=userBirthdayDay
-          valueProperty=null
-          nameProperty=null
-          none="cakeday.dd"
-          options=(hash
-            clearable=true
-            autoInsertNoneItem=false
-          )
-          onChange=(action (mut userBirthdayDay))
-        }}
+        <ComboBox
+          @content={{days}}
+          @value={{day}}
+          @valueProperty={{null}}
+          @nameProperty={{null}}
+          @none="cakeday.dd"
+          @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.dd"}}
+          @onChange={{action (mut day)}}
+        />
       {{/if}}
       {{#if siteSettings.cakeday_birthday_show_year}}
         -
         {{input
           type="number"
           class="year"
-          content=year
-          value=userBirthdayYear
+          value=year
           min=1905
           max=2904
           placeholder=(i18n "cakeday.yyyy")
-          onChange=(action (mut userBirthdayYear))
+          onChange=(action (mut year))
         }}
       {{/if}}
+      {{#if (and hasBirthdate hasAge)}}
+        &nbsp; {{d-icon 'check'}}
+      {{else}}
+        {{#if siteSettings.cakeday_birthday_required}}
+          {{#unless hasBirthdate}}
+            {{i18n "user.date_of_birth.required"}}
+          {{/unless}}
+        {{/if}}
+      {{/if}}
+    {{else}}
+      {{i18n "user.date_of_birth.nochange" birthdate=userBirthdateText}}
+    {{/if}}
+    {{#unless (and hasBirthdateSaved model.siteSettings.cakeday_birthday_allowchange)}}
+      {{#unless allowUserChangeBirthdate}}
+        <label class="instructions">
+          <div class="warning" style="background-color: var(--danger-low-mid); color: rgba(var(--always-black-rgb), 1);">{{d-icon "exclamation-triangle"}} {{i18n "user.date_of_birth.nochange_warn"}}</div>
+        </label>
+      {{/unless}}
+    {{else}}
+      {{#if model.isStaff}}
+        <div><a href="/admin/users/{{model.id}}/{{model.username_lower}}">{{d-icon "wrench"}} {{i18n "admin.user.allow_change_by_user"}}</a></div>
+      {{/if}}
+    {{/unless}}
+    {{#if canControlVisibility}}
+      <div style="margin-top: 10px;"><a name="show_birthday_to_be_celebrated"></a>
+      {{preference-checkbox labelKey="user.date_of_birth.show_birthday_to_be_celebrated" checked=model.custom_fields.show_birthday_to_be_celebrated}}
+      <label class="instructions">
+        {{i18n "user.date_of_birth.always_visible_to_staff"}}
+      </label>
+      {{#if model.custom_fields.show_birthday_to_be_celebrated}}
+        {{preference-checkbox labelKey="user.date_of_birth.limit_age_visibility_to_groups" checked=model.custom_fields.limit_age_visibility_to_groups}}
+        <label class="instructions">
+          {{i18n "user.date_of_birth.limit_age_visibility_to_groups2"}}
+        </label>
+        {{#if model.custom_fields.limit_age_visibility_to_groups}}
+        <div>
+          {{group-chooser
+            content=TLandCustomGroups
+            value=model.custom_fields.groups_fullbirthday_visible
+            labelProperty="name"
+            onChange=(action (mut model.custom_fields.groups_fullbirthday_visible))}}
+          <label class="instructions">
+            {{i18n "user.date_of_birth.show_age_to_theese_groups"}}
+          </label>
+        </div>
+        {{/if}}
+      {{/if}}
+      </div>
+    {{/if}}
     </div>
   </div>
 {{/if}}
