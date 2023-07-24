@@ -14,7 +14,7 @@ export function userAge(dateOfBirth) {
 }
 
 export function userAgeTitle(user) {
-  return (user.birthdate && moment(user.birthdate, "YYYY-MM-DD").year() !== 1904) ? userAge(user.birthdate) + ' ' + I18n.default.t("relative_time_picker.years", {count: userAge(user.birthdate)}) : null;
+  return (user.birthdate && moment(user.birthdate, "YYYY-MM-DD").year() !== 1904) ? userAge(user.birthdate) + ' ' + I18n.t("relative_time_picker.years", {count: userAge(user.birthdate)}) : null;
 }
 
 export function userBirthdateTitle(user) {
