@@ -20,6 +20,8 @@ function initializeCakeday(api) {
   const siteSettings = api.container.lookup("site-settings:main");
 
   api.modifyClass("controller:preferences/profile", {
+    pluginId: "discourse-cakeday",
+
     actions: {
       save() {
         if (siteSettings.cakeday_birthday_required && (this.model.date_of_birth === undefined || this.model.date_of_birth === ''))
