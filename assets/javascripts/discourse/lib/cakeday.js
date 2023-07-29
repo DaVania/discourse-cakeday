@@ -9,6 +9,10 @@ export function birthday(date) {
   return !isEmpty(date) && isSameDay(date);
 }
 
+export function celebrate(u) {
+  return u.get('custom_fields.show_birthday_to_be_celebrated') === true;
+}
+
 export function userAge(dateOfBirth) {
   return dateOfBirth ? (moment(dateOfBirth, "YYYY-MM-DD").year() !== 1904 ? moment().diff(dateOfBirth, 'years') : null) : null;
 }
@@ -38,6 +42,14 @@ export function birthdayTitle(user, currentUser) {
     return "user.date_of_birth.user_title";
   } else {
     return "user.date_of_birth.title";
+  }
+}
+
+export function secretTitle(user, currentUser) {
+  if (user.id === currentUser?.id) {
+    return "user.date_of_birth.user_secret_title";
+  } else {
+    return "user.date_of_birth.secret_title";
   }
 }
 

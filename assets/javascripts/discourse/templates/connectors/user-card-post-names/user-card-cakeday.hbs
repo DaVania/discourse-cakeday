@@ -1,5 +1,11 @@
 {{#if siteSettings.cakeday_birthday_enabled}}
   {{#if isBirthday}}
+    {{#if isSecret}}
+      <EmojiImages
+        @list={{siteSettings.cakeday_secret_emoji}}
+        @title={{secretTitle}}
+      />
+    {{/if}}
     <EmojiImages
       @list={{siteSettings.cakeday_birthday_emoji}}
       @title={{birthdayTitle}}

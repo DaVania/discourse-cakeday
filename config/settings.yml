@@ -29,6 +29,9 @@ plugins:
   cakeday_birthday_allowshowage:
     default: true
     client: true
+  cakeday_secret_emoji:
+    default: 'shushing_face'
+    client: true
   cakeday_min_age_controlvisibility:
     default: 18
     client: true

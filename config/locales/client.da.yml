@@ -17,6 +17,8 @@ da:
       date_of_birth:
         user_title: "I dag er det din fødselsdag!"
         title: "I dag er det min fødselsdag!"
+        user_secret_title: "Din fødselsdag er hemmeligholdt for alle, kun personalet kender til den!"
+        secret_title: "Dette er en hemmelighed!"
         label: "Fødselsdato"
         nochange: "%{birthdate} (kontakt personale for at ændre)"
         nochange_warn: "Ændringer til din fødselsdato, vil blive låst når du forlader denne side."

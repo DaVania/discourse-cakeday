@@ -7,6 +7,10 @@ module DiscourseCakeday
     def index
       users, total, more_params = cakedays_by("date_of_birth")
 
+      if (!current_user.staff?)
+        users = users.where(id: (UserCustomField.where(name: "show_birthday_to_be_celebrated").where(value: "true").pluck(:user_id)))
+      end
+
       render_json_dump(
         birthdays: serialize_data(users, CakedayUserSerializer),
         total_rows_birthdays: total,

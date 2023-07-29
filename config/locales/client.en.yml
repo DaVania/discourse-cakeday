@@ -11,6 +11,8 @@ en:
       date_of_birth:
         user_title: "Today is your birthday!"
         title: "Today is my birthday!"
+        user_secret_title: "Your birthdate is a secret to everyone, only staff knows about it!"
+        secret_title: "This is a secret!"
         label: "Date of Birth"
         nochange: "%{birthdate} (to change contact staff)"
         nochange_warn: "Changes to your birthdate, will be locked after leaving this page."

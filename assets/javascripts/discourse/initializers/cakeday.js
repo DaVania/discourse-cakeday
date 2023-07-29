@@ -68,9 +68,30 @@ function initializeCakeday(api) {
 
   if (birthdayEnabled) {
     api.includePostAttributes("user_birthdate");
+    api.includePostAttributes("user_celebrate");
 
-    api.addPosterIcon((_, { user_birthdate, user_id }) => {
-      if (birthday(user_birthdate)) {
+    api.addPosterIcon((_, { user_birthdate, user_celebrate, user_id }) => {
+      if (birthday(user_birthdate) && user_celebrate !== true && (user_id === currentUser?.id || currentUser?.staff)) {
+        let result = {};
+
+        if (emojiEnabled) {
+          result.emoji = siteSettings.cakeday_secret_emoji;
+        } else {
+          result.icon = "shushing_face";
+        }
+
+        if (user_id === currentUser?.id) {
+          result.title = I18n.t("user.date_of_birth.user_secret_title");
+        } else {
+          result.title = I18n.t("user.date_of_birth.secret_title");
+        }
+
+        return result;
+      }
+    });
+
+    api.addPosterIcon((_, { user_birthdate, user_celebrate, user_id }) => {
+      if (birthday(user_birthdate) && (user_celebrate === true || user_id === currentUser?.id || currentUser?.staff)) {
         let result = {};
 
         if (emojiEnabled) {

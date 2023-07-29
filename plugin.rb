@@ -133,6 +133,12 @@ after_initialize do
       end
   end
 
+  add_to_serializer(:post, :user_celebrate, false) do
+    if SiteSetting.cakeday_birthday_enabled && object.user.show_birthday_to_be_celebrated.present?
+      object.show_birthday_to_be_celebrated
+    end
+  end
+
   add_to_serializer(:post, :include_user_cakedate?) do
     SiteSetting.cakeday_enabled && scope.user.present? && object.user&.created_at.present?
   end
