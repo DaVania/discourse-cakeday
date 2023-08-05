@@ -24,7 +24,7 @@ function initializeCakeday(api) {
 
     actions: {
       save() {
-        if (siteSettings.cakeday_birthday_required && (this.model.date_of_birth === undefined || this.model.date_of_birth === ''))
+        if (siteSettings.cakeday_birthday_required && !currentUser.staff && !this.model.hasBirthdate)
         {
           const dialog = getOwner(this).lookup("service:dialog");
           dialog.alert({ message: htmlSafe(I18n.t("user.date_of_birth.is_required_error")) });

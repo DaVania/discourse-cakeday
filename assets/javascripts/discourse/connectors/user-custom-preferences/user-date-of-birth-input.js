@@ -70,13 +70,11 @@ export default {
       if (component.year && component.month && component.day && showYear) {
         date = `${component.year}-${component.month}-${component.day}`;
         hasBirthdate = component.year > 1904;
-
       }
 
       else if (component.month && component.day && !showYear) {
         date = `1904-${component.month}-${component.day}`;
         hasBirthdate = true;
-
       }
 
       else {
@@ -87,6 +85,7 @@ export default {
       // request to the server is called `date_of_birth`
       model.set("date_of_birth", date);
       component.set("hasAge", component.year !== null && component.year > 1904);
+      model.set("hasBirthdate", hasBirthdate);
       component.set("hasBirthdate", hasBirthdate);
       component.set("canControlVisibility", ageControlVisibility && userAge(date) >= ageControlVisibility || isStaff);;
     };
