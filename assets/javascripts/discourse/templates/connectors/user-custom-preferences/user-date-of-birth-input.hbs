@@ -50,15 +50,15 @@
       {{/if}}
       {{#if siteSettings.cakeday_birthday_show_year}}
         -
-        {{input
+        <input
           type="number"
           class="year"
-          value=year
+          value={{year}}
           min=1905
           max=2904
-          placeholder=(i18n "cakeday.yyyy")
-          onChange=(action (mut year))
-        }}
+          placeholder={{i18n "cakeday.yyyy"}}
+          onChange={{action (mut year)}}
+        />
       {{/if}}
       {{#if (and hasBirthdate hasAge)}}
         &nbsp; {{d-icon 'check'}}
@@ -85,22 +85,29 @@
     {{/if}}
     {{#if (and canControlVisibility hasAge)}}
       <div style="margin-top: 10px;"><a name="show_birthday_to_be_celebrated"></a>
-      {{preference-checkbox labelKey="user.date_of_birth.show_birthday_to_be_celebrated" checked=model.custom_fields.show_birthday_to_be_celebrated}}
+      <preference-checkbox
+        labelKey="user.date_of_birth.show_birthday_to_be_celebrated"
+        checked={{model.custom_fields.show_birthday_to_be_celebrated}}
+      />
       <label class="instructions">
         {{i18n "user.date_of_birth.always_visible_to_staff"}}
       </label>
       {{#if model.custom_fields.show_birthday_to_be_celebrated}}
-        {{preference-checkbox labelKey="user.date_of_birth.limit_age_visibility_to_groups" checked=model.custom_fields.limit_age_visibility_to_groups}}
+        <preference-checkbox
+          labelKey="user.date_of_birth.limit_age_visibility_to_groups"
+          checked={{model.custom_fields.limit_age_visibility_to_groups}}
+        />
         <label class="instructions">
           {{i18n "user.date_of_birth.limit_age_visibility_to_groups2"}}
         </label>
         {{#if model.custom_fields.limit_age_visibility_to_groups}}
         <div>
-          {{group-chooser
-            content=TLandCustomGroups
-            value=model.custom_fields.groups_fullbirthday_visible
+          <group-chooser
+            content={{TLandCustomGroups}}
+            value={{model.custom_fields.groups_fullbirthday_visible}}
             labelProperty="name"
-            onChange=(action (mut model.custom_fields.groups_fullbirthday_visible))}}
+            onChange={{action (mut model.custom_fields.groups_fullbirthday_visible)}}
+          />
           <label class="instructions">
             {{i18n "user.date_of_birth.show_age_to_theese_groups"}}
           </label>
