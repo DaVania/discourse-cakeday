@@ -32,10 +32,12 @@ export default {
     const showYear = model.siteSettings.cakeday_birthday_show_year;
 
     let hasBirthdate = false;
-    if (year && showYear)
+    if (year && showYear) {
       hasBirthdate = birthdate !== null && year !== null && year > defyear;
-    else
+    }
+    else {
       hasBirthdate = birthdate !== null;
+    }
     model.set("hasBirthdate", hasBirthdate);
 
     let hasAge = year !== null;
