@@ -50,15 +50,15 @@
       {{/if}}
       {{#if siteSettings.cakeday_birthday_show_year}}
         -
-        <input
+        {{input
           type="number"
           class="year"
-          value=(year)
+          value=year
           min=1905
           max=2904
-          placeholder={{i18n "cakeday.yyyy"}}
-          onChange={{action (mut year)}}
-        />
+          placeholder=(i18n "cakeday.yyyy")
+          onChange=(action (mut year))
+        }}
       {{/if}}
       {{#if (and hasBirthdate hasAge)}}
         &nbsp; {{d-icon 'check'}}
