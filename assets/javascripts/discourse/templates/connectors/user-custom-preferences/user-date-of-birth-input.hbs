@@ -86,18 +86,12 @@
     {{/if}}
     {{#if (and canControlVisibility hasAge)}}
       <div style="margin-top: 10px;"><a name="show_birthday_to_be_celebrated"></a>
-      <preference-checkbox
-        labelKey="user.date_of_birth.show_birthday_to_be_celebrated"
-        checked={{model.custom_fields.show_birthday_to_be_celebrated}}
-      />
+      {{preference-checkbox labelKey="user.date_of_birth.show_birthday_to_be_celebrated" checked=model.custom_fields.show_birthday_to_be_celebrated}}
       <label class="instructions">
         {{i18n "user.date_of_birth.always_visible_to_staff"}}
       </label>
       {{#if model.custom_fields.show_birthday_to_be_celebrated}}
-        <preference-checkbox
-          labelKey="user.date_of_birth.limit_age_visibility_to_groups"
-          checked={{model.custom_fields.limit_age_visibility_to_groups}}
-        />
+        {{preference-checkbox labelKey="user.date_of_birth.limit_age_visibility_to_groups" checked=model.custom_fields.limit_age_visibility_to_groups}}
         <label class="instructions">
           {{i18n "user.date_of_birth.limit_age_visibility_to_groups2"}}
         </label>
