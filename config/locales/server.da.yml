@@ -18,5 +18,6 @@ da:
     cakeday_birthday_allowshowage: "Tillad visning af alder på brugerkort"
     cakeday_min_age_controlvisibility: "Mindstealder for at kontrollere synlighed"
     cakeday_show_age_to_groups: "Udover personalet, vis alder på alle brugere, til følgende grupper"
+    cakeday_secret_emoji: "Det humørikon, der vises ved siden af navnet på brugere, der har fødsesldag som skal holdes hemmelig."
   cakeday:
     cakeday_birthday_required: "Indtast venligst din fødselsdato"

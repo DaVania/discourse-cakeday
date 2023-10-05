@@ -12,5 +12,6 @@ en:
     cakeday_birthday_allowshowage: "Allow showing age on usercards"
     cakeday_min_age_controlvisibility: "Mininum age to control visibility"
     cakeday_show_age_to_groups: "Besides staff, show age of alle users, to the following groups"
+    cakeday_secret_emoji: "The emoji that will be shown beside the user's name on their birthday, when it is to be kept a secret."
   cakeday:
     cakeday_birthday_required: "Please enter your birthdate"
