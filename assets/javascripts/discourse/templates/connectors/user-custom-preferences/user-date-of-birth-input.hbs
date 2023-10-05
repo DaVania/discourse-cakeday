@@ -97,12 +97,11 @@
         </label>
         {{#if model.custom_fields.limit_age_visibility_to_groups}}
         <div>
-          <group-chooser
-            content={{TLandCustomGroups}}
-            value={{model.custom_fields.groups_fullbirthday_visible}}
+          {{group-chooser
+            content=TLandCustomGroups
+            value=model.custom_fields.groups_fullbirthday_visible
             labelProperty="name"
-            onChange={{action (mut model.custom_fields.groups_fullbirthday_visible)}}
-          />
+            onChange=(action (mut model.custom_fields.groups_fullbirthday_visible))}}
           <label class="instructions">
             {{i18n "user.date_of_birth.show_age_to_theese_groups"}}
           </label>
