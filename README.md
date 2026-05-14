@@ -50,6 +50,20 @@ All settings are prefixed `private_cakeday_*` so they don't collide with core's
 - `private_cakeday_show_age_to_groups` — groups that always see full
   birthdate regardless of the per-user visibility setting
 
+## Co-existing with other plugins
+
+`discourse-custom-ap-profile` (from version 0.2 onward, see
+[the 2026.4 compat PR](https://github.com/DaVania/discourse-custom-ap-profile/pull/18))
+detects this plugin and treats it as equivalent to bundled `discourse-cakeday`
+for its PM age-gate and `add_to_group_by_min_age` automation scriptable.
+Either plugin satisfies its `cakeday`-style dependency.
+
+## Compatibility
+
+- Discourse `main` / 2026.4+. Earlier versions may work but are not actively
+  tested.
+- Co-installable with `discourse-custom-ap-profile`.
+
 ## License
 
 MIT
