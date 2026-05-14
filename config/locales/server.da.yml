@@ -6,18 +6,18 @@
 
 da:
   site_settings:
-    cakeday_enabled: "Vis cakeday humørikon[er] ved siden af navnet på brugeren, på den dato, hvor de blev medlem af Discourse."
-    cakeday_birthday_celebrate: "Fejr fødselsdage som standard"
-    cakeday_birthday_required: "Fødselsdato er Påkrævet for alle brugere"
-    cakeday_birthday_show_year: "Vis Kagedag års vælger, for at tillade brugere at indtaste deres alder."
-    cakeday_birthday_formatdmy: "Vis Kagedag vælgere som DD-MM-ÅÅÅÅ, i stedet for MM-DD-ÅÅÅÅ"
-    cakeday_emoji: "De humørikon[er], der vises ved siden af navnet på brugeren, på den dato, hvor de blev medlem af Discourse. Flere humørikoner kan specificeres ved: smile|cake|smile"
-    cakeday_birthday_enabled: "Vis fødselsdags humørikon[er] ved siden af navnet på brugeren, på deres fødselsdag."
-    cakeday_birthday_emoji: "De humørikon[er], der vises ved siden af navnet på brugeren, på deres fødselsdag. Flere humørikoner kan specificeres ved: smile|cake|smile"
-    cakeday_birthday_allowchange: "Tillad brugere at ændre deres fødselsdato, efter den er blevet indtastet."
-    cakeday_birthday_allowshowage: "Tillad visning af alder på brugerkort"
-    cakeday_min_age_controlvisibility: "Mindstealder for at kontrollere synlighed"
-    cakeday_show_age_to_groups: "Udover personalet, vis alder på alle brugere, til følgende grupper"
-    cakeday_secret_emoji: "Det humørikon, der vises ved siden af navnet på brugere, der har fødsesldag som skal holdes hemmelig."
-  cakeday:
-    cakeday_birthday_required: "Indtast venligst din fødselsdato"
+    private_cakeday_enabled: "Vis cakeday humørikon[er] ved siden af navnet på brugeren, på den dato, hvor de blev medlem af Discourse."
+    private_cakeday_birthday_celebrate: "Fejr fødselsdage som standard"
+    private_cakeday_birthday_required: "Fødselsdato er Påkrævet for alle brugere"
+    private_cakeday_birthday_show_year: "Vis Kagedag års vælger, for at tillade brugere at indtaste deres alder."
+    private_cakeday_birthday_formatdmy: "Vis Kagedag vælgere som DD-MM-ÅÅÅÅ, i stedet for MM-DD-ÅÅÅÅ"
+    private_cakeday_emoji: "De humørikon[er], der vises ved siden af navnet på brugeren, på den dato, hvor de blev medlem af Discourse. Flere humørikoner kan specificeres ved: smile|cake|smile"
+    private_cakeday_birthday_enabled: "Vis fødselsdags humørikon[er] ved siden af navnet på brugeren, på deres fødselsdag."
+    private_cakeday_birthday_emoji: "De humørikon[er], der vises ved siden af navnet på brugeren, på deres fødselsdag. Flere humørikoner kan specificeres ved: smile|cake|smile"
+    private_cakeday_birthday_allowchange: "Tillad brugere at ændre deres fødselsdato, efter den er blevet indtastet."
+    private_cakeday_birthday_allowshowage: "Tillad visning af alder på brugerkort"
+    private_cakeday_min_age_controlvisibility: "Mindstealder for at kontrollere synlighed"
+    private_cakeday_show_age_to_groups: "Udover personalet, vis alder på alle brugere, til følgende grupper"
+    private_cakeday_secret_emoji: "Det humørikon, der vises ved siden af navnet på brugere, der har fødsesldag som skal holdes hemmelig."
+  private_cakeday:
+    private_cakeday_birthday_required: "Indtast venligst din fødselsdato"

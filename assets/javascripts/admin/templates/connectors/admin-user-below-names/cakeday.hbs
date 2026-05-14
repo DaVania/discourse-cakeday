@@ -1,5 +1,5 @@
   <div class="display-row birthdate" id="userBirthdate">
-    {{#if (and dateIsMagical this.siteSettings.cakeday_birthday_required)}}
+    {{#if (and dateIsMagical this.siteSettings.private_cakeday_birthday_required)}}
     <div class="field">{{i18n "user.date_of_birth.label"}}</div>
       <div class="value">
           {{i18n "admin.user.date_unlocked"}}
@@ -12,7 +12,7 @@
                              action=(action saveBirthdate)
                              editing=editingBirthdate}}
     {{/if}}
-    {{#if this.siteSettings.cakeday_birthday_required}}
+    {{#if this.siteSettings.private_cakeday_birthday_required}}
     <div class="controls">
       {{#if dateIsMagical}}
       <DButton

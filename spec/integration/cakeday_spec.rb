@@ -16,15 +16,15 @@ describe "Anniversaries and Birthdays" do
 
     before { sign_in(current_user) }
 
-    it "should return 404 when viewing anniversaries and cakeday_enabled is false" do
-      SiteSetting.cakeday_enabled = false
+    it "should return 404 when viewing anniversaries and private_cakeday_enabled is false" do
+      SiteSetting.private_cakeday_enabled = false
 
       get "/cakeday/anniversaries.json"
       expect(response.status).to eq(404)
     end
 
-    it "should return 404 when viewing birthdays and cakeday_birthday_enabled is false" do
-      SiteSetting.cakeday_birthday_enabled = false
+    it "should return 404 when viewing birthdays and private_cakeday_birthday_enabled is false" do
+      SiteSetting.private_cakeday_birthday_enabled = false
 
       get "/cakeday/birthdays.json"
       expect(response.status).to eq(404)

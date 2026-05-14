@@ -6,7 +6,7 @@
 
 es:
   site_settings:
-    cakeday_enabled: "Mostrar emoji[s] del día de tarta junto al nombre del usuario en la fecha en que se unió a Discourse."
-    cakeday_emoji: "Los emojis que se mostrarán junto al nombre del usuario en la fecha en que se unió a Discourse. Se pueden especificar varios emojis: smile|cake|smile"
-    cakeday_birthday_enabled: "Mostrar emoji[s] de cumpleaños junto al nombre del usuario en su cumpleaños."
-    cakeday_birthday_emoji: "Los emojis que se mostrarán junto al nombre del usuario en su cumpleaños. Se pueden especificar varios emojis: smile|cake|smile"
+    private_cakeday_enabled: "Mostrar emoji[s] del día de tarta junto al nombre del usuario en la fecha en que se unió a Discourse."
+    private_cakeday_emoji: "Los emojis que se mostrarán junto al nombre del usuario en la fecha en que se unió a Discourse. Se pueden especificar varios emojis: smile|cake|smile"
+    private_cakeday_birthday_enabled: "Mostrar emoji[s] de cumpleaños junto al nombre del usuario en su cumpleaños."
+    private_cakeday_birthday_emoji: "Los emojis que se mostrarán junto al nombre del usuario en su cumpleaños. Se pueden especificar varios emojis: smile|cake|smile"

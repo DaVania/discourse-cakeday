@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module DiscourseCakeday
+module DiscoursePrivateCakeday
   class AnniversariesController < CakedayController
-    before_action :ensure_cakeday_enabled
+    before_action :ensure_private_cakeday_enabled
 
     def index
       column_sql = "created_at"
@@ -26,8 +26,8 @@ module DiscourseCakeday
 
     private
 
-    def ensure_cakeday_enabled
-      raise Discourse::NotFound if !SiteSetting.cakeday_enabled
+    def ensure_private_cakeday_enabled
+      raise Discourse::NotFound if !SiteSetting.private_cakeday_enabled
     end
   end
 end

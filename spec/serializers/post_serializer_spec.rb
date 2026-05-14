@@ -14,13 +14,13 @@ RSpec.describe PostSerializer do
       expect(serializer.as_json[:user_cakedate]).to eq(user.created_at.strftime("%Y-%m-%d"))
     end
 
-    it "should not include the user's cakedate when cakeday_enabled is false" do
-      SiteSetting.cakeday_enabled = false
+    it "should not include the user's cakedate when private_cakeday_enabled is false" do
+      SiteSetting.private_cakeday_enabled = false
       expect(serializer.as_json.has_key?(:user_cakedate)).to eq(false)
     end
 
-    it "should not include the user's birthdate when cakeday_birthday_enabled is false" do
-      SiteSetting.cakeday_birthday_enabled = false
+    it "should not include the user's birthdate when private_cakeday_birthday_enabled is false" do
+      SiteSetting.private_cakeday_birthday_enabled = false
       expect(serializer.as_json.has_key?(:user_birthdate)).to eq(false)
     end
   end

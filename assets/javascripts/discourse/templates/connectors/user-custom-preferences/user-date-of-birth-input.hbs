@@ -1,10 +1,10 @@
-{{#if siteSettings.cakeday_birthday_enabled}}
+{{#if siteSettings.private_cakeday_birthday_enabled}}
   <a name="cakeday" />
   <div class="control-group">
     <label class="control-label">{{i18n "user.date_of_birth.label"}}</label>
     <div class="controls">
     {{#if canChangeBirthdate}}
-      {{#if siteSettings.cakeday_birthday_formatdmy}}
+      {{#if siteSettings.private_cakeday_birthday_formatdmy}}
         <ComboBox
           @content={{days}}
           @value={{day}}
@@ -14,7 +14,7 @@
           @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.dd"}}
           @onChange={{action (mut day)}}
         />
-        {{#if siteSettings.cakeday_birthday_show_year}}
+        {{#if siteSettings.private_cakeday_birthday_show_year}}
           -
         {{/if}}
         <ComboBox
@@ -36,7 +36,7 @@
           @options={{hash clearable=true autoInsertNoneItem=false none="cakeday.mm"}}
           @onChange={{action (mut month)}}
         />
-        {{#if siteSettings.cakeday_birthday_show_year}}
+        {{#if siteSettings.private_cakeday_birthday_show_year}}
           -
         {{/if}}
         <ComboBox
@@ -49,7 +49,7 @@
           @onChange={{action (mut day)}}
         />
       {{/if}}
-      {{#if siteSettings.cakeday_birthday_show_year}}
+      {{#if siteSettings.private_cakeday_birthday_show_year}}
         -
         {{input
           type="number"
@@ -64,7 +64,7 @@
       {{#if (and hasBirthdate hasAge)}}
         &nbsp; {{d-icon 'check'}}
       {{else}}
-        {{#if siteSettings.cakeday_birthday_required}}
+        {{#if siteSettings.private_cakeday_birthday_required}}
           {{#unless hasBirthdate}}
             {{i18n "user.date_of_birth.required"}}
           {{/unless}}
@@ -73,7 +73,7 @@
     {{else}}
       {{i18n "user.date_of_birth.nochange" birthdate=userBirthdateText}}
     {{/if}}
-    {{#if (and hasBirthdateSaved model.siteSettings.cakeday_birthday_allowchange)}}
+    {{#if (and hasBirthdateSaved model.siteSettings.private_cakeday_birthday_allowchange)}}
       {{#if model.isStaff}}
         <div><a href="/admin/users/{{model.id}}/{{model.username_lower}}">{{d-icon "wrench"}} {{i18n "admin.user.allow_change_by_user"}}</a></div>
       {{/if}}

@@ -14,8 +14,8 @@ acceptance("Cakeday - Sidebar with cakeday disabled", function (needs) {
   needs.user();
 
   needs.settings({
-    cakeday_enabled: false,
-    cakeday_birthday_enabled: false,
+    private_cakeday_enabled: false,
+    private_cakeday_birthday_enabled: false,
     navigation_menu: "sidebar",
   });
 
@@ -50,8 +50,8 @@ acceptance("Cakeday - Sidebar with cakeday enabled", function (needs) {
   needs.user();
 
   needs.settings({
-    cakeday_enabled: true,
-    cakeday_birthday_enabled: true,
+    private_cakeday_enabled: true,
+    private_cakeday_birthday_enabled: true,
     navigation_menu: "sidebar",
   });
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DiscourseCakeday
+module DiscoursePrivateCakeday
   class BirthdaysController < CakedayController
     before_action :ensure_birthday_enabled
 
@@ -21,7 +21,7 @@ module DiscourseCakeday
     private
 
     def ensure_birthday_enabled
-      raise Discourse::NotFound if !SiteSetting.cakeday_birthday_enabled
+      raise Discourse::NotFound if !SiteSetting.private_cakeday_birthday_enabled
     end
   end
 end

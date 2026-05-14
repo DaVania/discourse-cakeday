@@ -2,7 +2,7 @@ import Group from "discourse/models/group";
 import {
   userAge,
   userBirthdateText,
-} from "discourse/plugins/discourse-cakeday/discourse/lib/cakeday";
+} from "discourse/plugins/discourse-private-cakeday/discourse/lib/cakeday";
 
 export default {
   setupComponent({ model }, component) {
@@ -29,7 +29,7 @@ export default {
       : null;
     
     const isStaff = this.currentUser.staff;
-    const showYear = model.siteSettings.cakeday_birthday_show_year;
+    const showYear = model.siteSettings.private_cakeday_birthday_show_year;
 
     let hasBirthdate = false;
     if (year && showYear) {
@@ -44,12 +44,12 @@ export default {
 
     if (model.custom_fields.show_birthday_to_be_celebrated === undefined)
     {
-      model.set('custom_fields.show_birthday_to_be_celebrated', model.siteSettings.cakeday_birthday_celebrate);
+      model.set('custom_fields.show_birthday_to_be_celebrated', model.siteSettings.private_cakeday_birthday_celebrate);
     }
 
-    const allowUserChangeBirthdate = isStaff || model.siteSettings.cakeday_birthday_allowchange;
+    const allowUserChangeBirthdate = isStaff || model.siteSettings.private_cakeday_birthday_allowchange;
     let canChangeBirthdate = allowUserChangeBirthdate || (day === null || month === null || (year === null && showYear));
-    const ageControlVisibility = model.siteSettings.cakeday_min_age_controlvisibility;
+    const ageControlVisibility = model.siteSettings.private_cakeday_min_age_controlvisibility;
     let canControlVisibility = ageControlVisibility && userAge(birthdate) >= ageControlVisibility || isStaff;
     
     let showGroups = hasAge && showYear && canControlVisibility;
@@ -98,7 +98,7 @@ export default {
     return g.id > 10}))});
     
     //needs an if siteSettings year required/available....
-    //cakeday_birthday_show_year
+    //private_cakeday_birthday_show_year
     if (showYear) component.addObserver("year", updateBirthdate);
     component.addObserver("month", updateBirthdate);
     component.addObserver("day", updateBirthdate);

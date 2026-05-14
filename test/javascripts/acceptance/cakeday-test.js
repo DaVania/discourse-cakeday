@@ -6,10 +6,10 @@ import { click, visit } from "@ember/test-helpers";
 acceptance("Cakeday", function (needs) {
   needs.user();
   needs.settings({
-    cakeday_enabled: true,
-    cakeday_emoji: "cake",
-    cakeday_birthday_enabled: true,
-    cakeday_birthday_emoji: "birthday",
+    private_cakeday_enabled: true,
+    private_cakeday_emoji: "cake",
+    private_cakeday_birthday_enabled: true,
+    private_cakeday_birthday_emoji: "birthday",
   });
 
   needs.pretender((server) => {
