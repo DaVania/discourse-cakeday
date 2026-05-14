@@ -17,7 +17,7 @@ function initializeCakeday(api) {
   const store = api.container.lookup("service:store");
   store.addPluralization("anniversary", "anniversaries");
 
-  const siteSettings = api.container.lookup("site-settings:main");
+  const siteSettings = api.container.lookup("service:site-settings");
 
   api.modifyClass("controller:preferences/profile", {
     pluginId: "discourse-private-cakeday",
