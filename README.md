@@ -29,7 +29,7 @@ the same time.
    Admin → Settings → search "cakeday" → uncheck `cakeday enabled`
 2. Add to your `app.yml` under `plugins:`:
    ```yaml
-   - git clone https://github.com/babylai/discourse-private-cakeday.git
+   - git clone https://github.com/DaVania/discourse-private-cakeday.git
    ```
 3. Rebuild the container
 4. Enable: Admin → Settings → search "private cakeday" → check `private cakeday enabled`
