@@ -3,7 +3,7 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 import {
   birthday,
   cakeday,
-} from "discourse/plugins/discourse-cakeday/discourse/lib/cakeday";
+} from "discourse/plugins/discourse-private-cakeday/discourse/lib/cakeday";
 import { registerUnbound } from "discourse-common/lib/helpers";
 import { getOwner } from "discourse-common/lib/get-owner";
 import { htmlSafe } from "@ember/template";
@@ -20,11 +20,11 @@ function initializeCakeday(api) {
   const siteSettings = api.container.lookup("site-settings:main");
 
   api.modifyClass("controller:preferences/profile", {
-    pluginId: "discourse-cakeday",
+    pluginId: "discourse-private-cakeday",
 
     actions: {
       save() {
-        if (siteSettings.cakeday_birthday_required && !currentUser.staff && !this.model.hasBirthdate)
+        if (siteSettings.private_cakeday_birthday_required && !currentUser.staff && !this.model.hasBirthdate)
         {
           const dialog = getOwner(this).lookup("service:dialog");
           dialog.alert({ message: htmlSafe(I18n.t("user.date_of_birth.is_required_error")) });
@@ -39,8 +39,8 @@ function initializeCakeday(api) {
   });
 
   const emojiEnabled = siteSettings.enable_emoji;
-  const cakedayEnabled = siteSettings.cakeday_enabled;
-  const birthdayEnabled = siteSettings.cakeday_birthday_enabled;
+  const cakedayEnabled = siteSettings.private_cakeday_enabled;
+  const birthdayEnabled = siteSettings.private_cakeday_birthday_enabled;
 
   if (cakedayEnabled) {
     api.includePostAttributes("user_cakedate");
@@ -50,7 +50,7 @@ function initializeCakeday(api) {
         let result = {};
 
         if (emojiEnabled) {
-          result.emoji = siteSettings.cakeday_emoji;
+          result.emoji = siteSettings.private_cakeday_emoji;
         } else {
           result.icon = "birthday-cake";
         }
@@ -75,7 +75,7 @@ function initializeCakeday(api) {
         let result = {};
 
         if (emojiEnabled) {
-          result.emoji = siteSettings.cakeday_secret_emoji;
+          result.emoji = siteSettings.private_cakeday_secret_emoji;
         } else {
           result.icon = "shushing_face";
         }
@@ -95,7 +95,7 @@ function initializeCakeday(api) {
         let result = {};
 
         if (emojiEnabled) {
-          result.emoji = siteSettings.cakeday_birthday_emoji;
+          result.emoji = siteSettings.private_cakeday_birthday_emoji;
         } else {
           result.icon = "birthday-cake";
         }

@@ -6,7 +6,7 @@
 
 hr:
   site_settings:
-    cakeday_enabled: "Prikažite emoji godišnjice učlanjenja pored imena korisnika na dan kada su se učlanili na Discourse."
-    cakeday_emoji: "Emoji koji će biti prikazan pored imena korisnika na godišnjicu njihovog učlanjenja na Discourse. Višestruki emojiji mogu se specificirati koristeći: \"smile|cake|smile\""
-    cakeday_birthday_enabled: "Prikažite rođendanski emoji pored imena korisnika na njihov rođendan"
-    cakeday_birthday_emoji: "Emoji koji će biti prikazan pored imena korisnika na njihov rođendan. Višestruki emojiji mogu se specificirati koristeći: \"smile|cake|smile\""
+    private_cakeday_enabled: "Prikažite emoji godišnjice učlanjenja pored imena korisnika na dan kada su se učlanili na Discourse."
+    private_cakeday_emoji: "Emoji koji će biti prikazan pored imena korisnika na godišnjicu njihovog učlanjenja na Discourse. Višestruki emojiji mogu se specificirati koristeći: \"smile|cake|smile\""
+    private_cakeday_birthday_enabled: "Prikažite rođendanski emoji pored imena korisnika na njihov rođendan"
+    private_cakeday_birthday_emoji: "Emoji koji će biti prikazan pored imena korisnika na njihov rođendan. Višestruki emojiji mogu se specificirati koristeći: \"smile|cake|smile\""

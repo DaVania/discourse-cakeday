@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DiscourseCakeday
+module DiscoursePrivateCakeday
   class CakedayUserSerializer < BasicUserSerializer
     attributes :title, :cakedate
   end

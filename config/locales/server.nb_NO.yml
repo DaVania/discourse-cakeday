@@ -6,4 +6,4 @@
 
 nb_NO:
   site_settings:
-    cakeday_enabled: "Vis bursdagskake-emoji ved siden av brukerens navn på datoen de registrerte seg hos Discourse!"
+    private_cakeday_enabled: "Vis bursdagskake-emoji ved siden av brukerens navn på datoen de registrerte seg hos Discourse!"

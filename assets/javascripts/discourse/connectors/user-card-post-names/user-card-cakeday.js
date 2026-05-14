@@ -7,7 +7,7 @@ import {
   userBirthdateTitle,
   celebrate,
   secretTitle,
-} from "discourse/plugins/discourse-cakeday/discourse/lib/cakeday";
+} from "discourse/plugins/discourse-private-cakeday/discourse/lib/cakeday";
 
 export default {
   setupComponent({ user }, component) {

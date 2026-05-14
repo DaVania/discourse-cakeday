@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DiscourseCakeday
+module DiscoursePrivateCakeday
   class CakedayController < ::ApplicationController
     before_action :ensure_logged_in
     before_action :setup_params

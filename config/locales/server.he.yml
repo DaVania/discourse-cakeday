@@ -6,7 +6,7 @@
 
 he:
   site_settings:
-    cakeday_enabled: "הצגת אימוג׳י לציון יום עוגה ליד שם המשתמש בתאריך ההצטרפות ל־Discourse."
-    cakeday_emoji: "סוג/י האימוג׳י שיופיעו ליד שם המשתמש בתאריך ההצטרפות ל־Discourse. ניתן לציין מספר סימנים באופן הבא: smile|cake|smile"
-    cakeday_birthday_enabled: "הצגת אימוג׳י לציון יום הולדת ליד שם המשתמש בתאריך יום ההולדת."
-    cakeday_birthday_emoji: "סוג/י האימוג׳י שיופיעו ליד שם המשתמש בתאריך יום ההולדת. ניתן לציין מספר סימנים באופן הבא: smile|cake|smile"
+    private_cakeday_enabled: "הצגת אימוג׳י לציון יום עוגה ליד שם המשתמש בתאריך ההצטרפות ל־Discourse."
+    private_cakeday_emoji: "סוג/י האימוג׳י שיופיעו ליד שם המשתמש בתאריך ההצטרפות ל־Discourse. ניתן לציין מספר סימנים באופן הבא: smile|cake|smile"
+    private_cakeday_birthday_enabled: "הצגת אימוג׳י לציון יום הולדת ליד שם המשתמש בתאריך יום ההולדת."
+    private_cakeday_birthday_emoji: "סוג/י האימוג׳י שיופיעו ליד שם המשתמש בתאריך יום ההולדת. ניתן לציין מספר סימנים באופן הבא: smile|cake|smile"

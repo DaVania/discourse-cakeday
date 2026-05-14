@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-# name: discourse-cakeday
+# name: discourse-private-cakeday
 # about: Show a birthday cake beside the user's name on their birthday and/or on the date they joined Discourse.
 # version: 0.4
 # authors: Alan Tan
-# url: https://github.com/discourse/discourse-cakeday
+# url: https://github.com/babylai/discourse-private-cakeday
 # transpile_js: true
 
-enabled_site_setting :cakeday_enabled
+enabled_site_setting :private_cakeday_enabled
 
 register_asset "stylesheets/cakeday.scss"
 register_asset "stylesheets/emoji-images.scss"
@@ -17,31 +17,31 @@ register_asset "stylesheets/mobile/user-date-of-birth-input.scss"
 register_svg_icon "birthday-cake" if respond_to?(:register_svg_icon)
 
 after_initialize do
-  module ::DiscourseCakeday
-    PLUGIN_NAME = "discourse-cakeday"
+  module ::DiscoursePrivateCakeday
+    PLUGIN_NAME = "discourse-private-cakeday"
 
     class Engine < ::Rails::Engine
       engine_name PLUGIN_NAME
-      isolate_namespace DiscourseCakeday
+      isolate_namespace DiscoursePrivateCakeday
     end
   end
 
-  ::DiscourseCakeday::Engine.routes.draw do
+  ::DiscoursePrivateCakeday::Engine.routes.draw do
     get "birthdays" => "birthdays#index"
     get "birthdays/:filter" => "birthdays#index"
     get "anniversaries" => "anniversaries#index"
     get "anniversaries/:filter" => "anniversaries#index"
   end
 
-  Discourse::Application.routes.append { mount ::DiscourseCakeday::Engine, at: "/cakeday" }
+  Discourse::Application.routes.append { mount ::DiscoursePrivateCakeday::Engine, at: "/cakeday" }
 
   %w[
     ../app/jobs/onceoff/fix_invalid_date_of_birth.rb
     ../app/jobs/onceoff/migrate_date_of_birth_to_users_table.rb
-    ../app/serializers/discourse_cakeday/cakeday_user_serializer.rb
-    ../app/controllers/discourse_cakeday/cakeday_controller.rb
-    ../app/controllers/discourse_cakeday/anniversaries_controller.rb
-    ../app/controllers/discourse_cakeday/birthdays_controller.rb
+    ../app/serializers/discourse_private_cakeday/cakeday_user_serializer.rb
+    ../app/controllers/discourse_private_cakeday/cakeday_controller.rb
+    ../app/controllers/discourse_private_cakeday/anniversaries_controller.rb
+    ../app/controllers/discourse_private_cakeday/birthdays_controller.rb
   ].each { |path| load File.expand_path(path, __FILE__) }
 
   # overwrite the user and user_card serializers to show
@@ -55,13 +55,13 @@ after_initialize do
     add_to_serializer(
       serializer,
       :birthdate,
-      include_condition: -> { SiteSetting.cakeday_birthday_enabled && scope.user.present? },
+      include_condition: -> { SiteSetting.private_cakeday_birthday_enabled && scope.user.present? },
     ) {
-        if SiteSetting.cakeday_birthday_enabled && object.date_of_birth.present?
+        if SiteSetting.private_cakeday_birthday_enabled && object.date_of_birth.present?
           allowed_groups = []
 
           if object.custom_fields['groups_fullbirthday_visible']
-            allowed_groups.concat(SiteSetting.cakeday_show_age_to_groups && object.custom_fields['groups_fullbirthday_visible'].to_s.split('|'))
+            allowed_groups.concat(SiteSetting.private_cakeday_show_age_to_groups && object.custom_fields['groups_fullbirthday_visible'].to_s.split('|'))
           end
 
           allowedByGroup = allowed_groups.present? && scope.user.groups.where(id: allowed_groups).exists?
@@ -83,11 +83,11 @@ after_initialize do
       }
 
     add_to_serializer(serializer, :include_cakedate?) do
-      SiteSetting.cakeday_enabled && scope.user.present?
+      SiteSetting.private_cakeday_enabled && scope.user.present?
     end
 
     add_to_serializer(serializer, :include_birthdate?) do
-      SiteSetting.cakeday_birthday_enabled && scope.user.present?
+      SiteSetting.private_cakeday_birthday_enabled && scope.user.present?
     end
   end
 
@@ -106,13 +106,13 @@ after_initialize do
   add_to_serializer(
     :post,
     :user_birthdate,
-    include_condition: -> { SiteSetting.cakeday_birthday_enabled && object.user.date_of_birth.present? }
+    include_condition: -> { SiteSetting.private_cakeday_birthday_enabled && object.user.date_of_birth.present? }
   ) do
-      if SiteSetting.cakeday_birthday_enabled && object.user.date_of_birth.present?
+      if SiteSetting.private_cakeday_birthday_enabled && object.user.date_of_birth.present?
         allowed_groups = []
 
         if object.custom_fields['groups_fullbirthday_visible']
-          allowed_groups.concat(SiteSetting.cakeday_show_age_to_groups && object.custom_fields['groups_fullbirthday_visible'].to_s.split('|'))
+          allowed_groups.concat(SiteSetting.private_cakeday_show_age_to_groups && object.custom_fields['groups_fullbirthday_visible'].to_s.split('|'))
         end
 
         allowedByGroup = allowed_groups.present? && scope.user.groups.where(id: allowed_groups).exists?
@@ -134,17 +134,17 @@ after_initialize do
   end
 
   add_to_serializer(:post, :user_celebrate, false) do
-    if SiteSetting.cakeday_birthday_enabled && object.user.show_birthday_to_be_celebrated.present?
+    if SiteSetting.private_cakeday_birthday_enabled && object.user.show_birthday_to_be_celebrated.present?
       object.show_birthday_to_be_celebrated
     end
   end
 
   add_to_serializer(:post, :include_user_cakedate?) do
-    SiteSetting.cakeday_enabled && scope.user.present? && object.user&.created_at.present?
+    SiteSetting.private_cakeday_enabled && scope.user.present? && object.user&.created_at.present?
   end
 
   add_to_serializer(:post, :include_user_birthdate?) do
-    SiteSetting.cakeday_birthday_enabled && scope.user.present? &&
+    SiteSetting.private_cakeday_birthday_enabled && scope.user.present? &&
       object.user&.date_of_birth.present?
   end
 
