@@ -1,8 +1,8 @@
 <ul class="user-info-list">
-  {{#each users as |user|}}
+  {{#each @users as |user|}}
     <li class="user-info-item">
       <UserInfo @user={{user}}>
-        <div>{{cakeday-date user.cakedate isBirthday=isBirthday}}</div>
+        <div>{{cakeday-date user.cakedate isBirthday=@isBirthday}}</div>
       </UserInfo>
     </li>
   {{else}}

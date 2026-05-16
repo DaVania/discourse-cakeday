@@ -1,14 +1,20 @@
-import I18n from "I18n";
+import { service } from "@ember/service";
 import DiscourseRoute from "discourse/routes/discourse";
+import { i18n } from "discourse-i18n";
 
-export default DiscourseRoute.extend({
+export default class CakedayAnniversariesRoute extends DiscourseRoute {
+  @service router;
+
   beforeModel() {
     if (!this.siteSettings.private_cakeday_enabled) {
-      this.transitionTo("unknown", window.location.pathname.replace(/^\//, ""));
+      this.router.transitionTo(
+        "unknown",
+        window.location.pathname.replace(/^\//, "")
+      );
     }
-  },
+  }
 
   titleToken() {
-    return I18n.t("anniversaries.title");
-  },
-});
+    return i18n("anniversaries.title");
+  }
+}
