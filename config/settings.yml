@@ -17,6 +17,9 @@ plugins:
   private_cakeday_birthday_show_year:
     default: false
     client: true
+  private_cakeday_show_age_inline:
+    default: true
+    client: true
   private_cakeday_birthday_formatdmy:
     default: false
     client: true

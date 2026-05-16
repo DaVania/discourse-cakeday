@@ -17,4 +17,6 @@
     <EmojiImages @list={{siteSettings.private_cakeday_emoji}} @title={{cakedayTitle}} />
   {{/if}}
 {{/if}}
-{{user-age-title userage=userAgeTitle title=userBirthdateTitle}}
+{{#if siteSettings.private_cakeday_show_age_inline}}
+  {{user-age-title userage=userAgeTitle title=userBirthdateTitle}}
+{{/if}}

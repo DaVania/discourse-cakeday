@@ -4,6 +4,7 @@ en:
     private_cakeday_birthday_celebrate: "Celebrate birthdays by default"
     private_cakeday_birthday_required: "Birthdate is Required for all users"
     private_cakeday_birthday_show_year: "Show cakeday year selector, to allow users to input their age."
+    private_cakeday_show_age_inline: "Show the user's age inline beside their name on user cards. Disable this if another plugin already renders the age (e.g. discourse-custom-ap-profile) to avoid a duplicate age."
     private_cakeday_birthday_formatdmy: "Show cakeday selectors as DD-MM-YYYY, instead of MM-DD-YYYY"
     private_cakeday_emoji: "The emoji[s] that will be shown beside the user's name on the date that they joined Discourse. Multiple emojis can be specified by: smile|cake|smile"
     private_cakeday_birthday_enabled: "Show birthday emoji[s] beside the user's name on their birthday."
